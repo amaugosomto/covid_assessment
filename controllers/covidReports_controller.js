@@ -144,26 +144,26 @@ const covidReports_controllers = {
       ws.cell(1, headingColumnIndex++).string(heading);
     });
 
-    await co(function*() {
-      const cursor = covidData_model.aggregate()
-        .match({ $and: query })
-        .cursor()
-        .exec();
+    // await co(function*() {
+    //   const cursor = covidData_model.aggregate()
+    //     .match({ $and: query })
+    //     .cursor()
+    //     .exec();
 
-      let rowIndex = 2
-      for (let doc = yield cursor.next(); doc != null; doc = yield cursor.next()){
-        let columnIndex = 1;
-        columnNames.forEach(heading => {
-          let value = !doc[heading] ? '' : typeof doc[heading] != "string" ? 
-            doc[heading].toString() : doc[heading];
+    //   let rowIndex = 2
+    //   for (let doc = yield cursor.next(); doc != null; doc = yield cursor.next()){
+    //     let columnIndex = 1;
+    //     columnNames.forEach(heading => {
+    //       let value = !doc[heading] ? '' : typeof doc[heading] != "string" ? 
+    //         doc[heading].toString() : doc[heading];
 
-          ws.cell(rowIndex, columnIndex++).string(value);
-        });
-        rowIndex++;
-      }
-      wb.write(__dirname + `/files/covidData${fileTimeStamp}.xlsx`);
+    //       ws.cell(rowIndex, columnIndex++).string(value);
+    //     });
+    //     rowIndex++;
+    //   }
+      //wb.write(__dirname + `/files/covidData${fileTimeStamp}.xlsx`);
 
-    });
+    // });
       
     res.send(`covidData${fileTimeStamp}.xlsx`)
   }
