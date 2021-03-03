@@ -161,7 +161,7 @@ const covidReports_controllers = {
         });
         rowIndex++;
       }
-      wb.write(__dirname + `/../files/covidData${fileTimeStamp}.xlsx`);
+      wb.write(__dirname + `/files/covidData${fileTimeStamp}.xlsx`);
 
     });
       
